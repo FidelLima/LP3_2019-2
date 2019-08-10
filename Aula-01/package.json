@@ -2,10 +2,10 @@
   "name": "Aula-01",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "serve.js",
   "scripts": {
     "start": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +13,10 @@
   "dependencies": {
     "express": "^4.17.1",
     "save": "^2.4.0"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "superagent": "^5.1.0",
+    "supertest": "^4.0.2"
   }
 }
