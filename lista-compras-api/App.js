@@ -1,13 +1,37 @@
-const express = require ('express');
-const logger = require ('morgan');
-const cors = require ('cors');
-const bodyParser = require ('body-parser');
+const express = require('express');
 
-const app =express();
+// Middlewares
+const logger = require('morgan');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
-app.use(logger('dev')); // tudo que receber no app vai aparecer por ele 
-app.use(cors());// ao utilizar isso sem nem um argumernto/parametro vc ta liberando oo sacesso  a outros serviços para qualquer outra aplicação que tenha acesso a net
+const rotasListas = require('./routes/listas');
+require('./databases/db');
 
-app.use(bodyParser.json()); //permite que o app express consiga entender dados do front end em formato json 
+const app = express();
 
-module.exports=app;
+app.use(logger('dev'));
+/**
+ * Ao utilizar a função cors() sem
+ * nenhum argumento, você estará
+ * liberando o acesso a todos os
+ * serviços para qualquer outra aplicação
+ * que tenha acesso à internet.
+ */
+app.use(cors());
+
+/**
+ * Permite que o nosso app Express
+ * consiga interpretar dados do frontend
+ * em formato JSON.
+ */
+app.use(bodyParser.json());
+
+/**
+ * Registra as rotas relacionadas
+ * a listas
+ */
+app.use('/listas', rotasListas);
+
+
+module.exports = app;

@@ -13,7 +13,7 @@ const router = express.Router();
  * Rota para o serviço: /listas
  * Verbo HTTP: GET
  */
-router.get('/', listaCtrl.recuperarTodas);
+//router.get('/', listaCtrl.recuperarTodas);
 
 /**
  * Rota para o serviço: /listas
@@ -25,6 +25,6 @@ router.post('/', listaCtrl.salvar);
  * Rota para o serviço: /listas/itens
  * Verbo HTTP: GET
  */
-router.get('/itens', listaCtrl.recuperarItensPorDescricao);
+//router.get('/itens', listaCtrl.recuperarItensPorDescricao);
 
 module.exports = router;

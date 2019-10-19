@@ -1,5 +1,3 @@
-const { Item } = require('./db');
-
 const itens = [
     {
         "unidade": "UN",
