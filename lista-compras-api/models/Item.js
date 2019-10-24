@@ -1,10 +1,15 @@
-class Item {
-    constructor() {
-        this._id = `${new Date().getMilliseconds()}`;
-        this.descricao = '';
-        this.unidade = '';
-        this.quantidade = 0;
-    }
-}
+const { Schema, model } = require('mongoose');
 
+const esquema = new Schema({
+    descricao: {
+        type: String,
+        required: true
+    },
+    unidade: {
+        type: String,
+        required: true
+    }
+});
+
+const Item = model('Item', esquema);
 module.exports = Item;

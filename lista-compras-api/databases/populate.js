@@ -401,24 +401,4 @@ const itens = [
     }
 ];
 
-/**
- * A função abaixo salva cada
- * um dos itens do array acima
- * no banco de dados.
- */
-const salvarItens = async () => {
-    await require('./db');
-
-    // Versão com o laço for
-    /*for (let i = 0; i < itens.length; i++) {
-        await Lista.create(itens[i]);
-    }*/
-
-    // Versão com a função forEach
-    itens.forEach(async (item) =>
-        await Item.create(item));
-};
-
-// Invoca a função que salva os itens
-salvarItens();
 
