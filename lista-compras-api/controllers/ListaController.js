@@ -1,6 +1,15 @@
 const Lista = require('../models/Lista');
-
+const Item = require('../models/Item');
 const controller = {
+
+    recuperarItens: async (req, res) => {
+        const {filtro} = req.body;
+        const itens = await Item.find({
+             descricao:{ '$regex':filtro, '$options': 'i'} //comeca a fazer a busca so com as primeiras letras escritas
+            });
+        return res.json(itens);
+    },
+
     salvar: (req, res) => {
         const { nome } = req.body;
         if (nome) {
