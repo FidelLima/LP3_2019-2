@@ -1,5 +1,4 @@
-const itens = [
-    {
+[{
         "unidade": "UN",
         "descricao": "Abacaxi"
     },
@@ -399,17 +398,4 @@ const itens = [
         "unidade": "UN",
         "descricao": "Vinho"
     }
-];
-
-require('./db');
-const Item = require('../models/Item');
-
-Item
-    .insertMany(
-        itens,
-        (erro, itensSalvos) => console.log('Itens salvos')
-    );
-
-
-
-
+]

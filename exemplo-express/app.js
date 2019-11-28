@@ -1,11 +1,12 @@
 const express = require('express');
 
-//constante que controla nosso app
+// Constante que controla nosso app
 const app = express();
 
-app.use('/',(req, res)=>res.send('fala Rapasiadaaaaaaaaaaa')
-
+app.use('/',
+    (req, res) => res.send('Fala, negada!')
 );
 
-app.listen(3000, () => console.log('Servidor iniciado')
+app.listen(3000,
+    () => console.log('Servidor iniciado')
 );

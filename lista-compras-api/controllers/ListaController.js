@@ -1,17 +1,21 @@
 const Lista = require('../models/Lista');
 const Item = require('../models/Item');
+
 const controller = {
 
-    
+    recuperarListas: async (req, res) => {
+        const listas = await Lista.find();
+        return res.json(listas);
+    },
+
     recuperarItens: async (req, res) => {
-        const {filtro} = req.body;
+        const { filtro } = req.body;
         const itens = await Item.find({
-             descricao:{ '$regex':filtro, '$options': 'i'} //comeca a fazer a busca so com as primeiras letras escritas
-            });
+            descricao: { '$regex': filtro, '$options': 'i' }
+        });
         return res.json(itens);
     },
 
-    //salva a lista 
     salvar: (req, res) => {
         const { nome } = req.body;
         if (nome) {
@@ -31,36 +35,38 @@ const controller = {
             });
         }
     },
-    
-        atualizar: (req, res) =>{
-            const {id} = req.params;
-            const lista = req.body;
 
-            lista
-            .findByAndUpdate(id, lista)
+    atualizar: (req, res) => {
+        const { id } = req.params;
+        const lista = req.body;
+
+        Lista
+            .findByIdAndUpdate(id, lista)
             .exec()
             .then(listaAtualizada => {
-                //Se encontou a lista e a atualiszou
-                if(lista){
+                /**
+                 * Se encontrou a lista e
+                 * a atualizou...
+                 */
+                if (listaAtualizada) {
                     res.json(listaAtualizada);
-                }else{
+                } else {
                     res
-                    .status(404)
-                    .json({
-                        mensagem: 'lista nao encontrada'
-                    });
-                }           
+                        .status(404)
+                        .json({
+                            mensagem: 'Lista não encontrada'
+                        });
+                }
             })
-            .catch(erro =>{
+            .catch(erro => {
                 console.log(erro);
-                res 
-                .status(500)
-                .json({
-                    mensagem: 'Erro ao tentar atualizar a lista'
-                })
+                res
+                    .status(500)
+                    .json({
+                        mensagem: 'Erro ao tentar atualizar a lista'
+                    });
             });
-        }
-
+    }
 };
 
 module.exports = controller;
